@@ -1,25 +1,20 @@
 spring:
   application:
-    name: sbb
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    name: back
   datasource:
-    url: jdbc:h2:~/local;AUTO_SERVER=TRUE
-    driver-class-name: org.h2.Driver
+    url: jdbc:h2:./db_dev;MODE=MySQL;AUTO_SERVER=TRUE
     username: sa
     password:
+    driver-class-name: org.h2.Driver
+  output:
+    ansi:
+      enabled: always
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
-        show_sql: true
+    show-sql: true
     hibernate:
       ddl-auto: update
-    devtools:
-      livereload:
-        enabled: true
-      restart:
-        enabled: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
