@@ -1,7 +1,6 @@
 package com.mysite.sbb;
 
 import com.mysite.sbb.answer.Answer;
-import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
@@ -15,14 +14,12 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 @SpringBootTest
 class SbbApplicationTests {
 
 	@Autowired
 	private QuestionRepository questionRepository;
-
-	@Autowired
-	private AnswerRepository answerRepository;
 
 	@Transactional
 	@Test
