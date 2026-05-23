@@ -9,13 +9,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
+@Setter
+@Getter
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = IDENTITY)
+    private int id;
+
+    private LocalDateTime createDate;
 
     @Column(length = 200)
     private String subject;
@@ -23,24 +27,14 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime createdDate;
-
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<Answer> answerList;
-
-    public void setCreateDate(LocalDateTime now) {
-    }
-
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Answer> answers = new ArrayList<>();
+    private List<Answer> answerList = new ArrayList<>();
 
-    public Answer addAnswer(String content) {
+    public void addAnswer(String content) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setQuestion(this);
         answer.setCreateDate(LocalDateTime.now());
-        answers.add(answer);
-
-        return answer;
+        answerList.add(answer);
     }
 }
